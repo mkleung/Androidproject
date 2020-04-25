@@ -1,6 +1,5 @@
-package com.example.nasaearthimagerydatabase;
+package com.example.project;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +44,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Objects;
 
+import com.example.project.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -235,7 +235,7 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
                     try {
                         File imageFile = File.createTempFile(fileName, ".jpg", storageDirectory);
                         currentPhotoPath = imageFile.getAbsolutePath();
-                        Uri imageUri = FileProvider.getUriForFile(Activity2.this, "com.example.nasaearthimagerydatabase.fileprovider", imageFile);
+                        Uri imageUri = FileProvider.getUriForFile(Activity2.this, "com.example.project.fileprovider", imageFile);
                         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                         startActivityForResult(cameraIntent, 1);

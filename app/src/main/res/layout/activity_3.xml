@@ -4,12 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity3"
+    tools:context="com.example.project.Activity3"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#EBD4F1"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
     >
 
 

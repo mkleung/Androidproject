@@ -1,4 +1,4 @@
-package com.example.nasaearthimagerydatabase;
+package com.example.project;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.project.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -158,13 +160,13 @@ public class DetailsFragment extends Fragment {
                     helpDialog.setContentView(R.layout.activity_2_help_dialog);
 
                     TextView helpDescription = helpDialog.findViewById(R.id.helpDescription);
-                    helpDescription.setText(selectedCoffee.name);
+                    helpDescription.setText(selectedCoffee.getName());
                     TextView helpDescription2 =helpDialog.findViewById(R.id.helpDescription2);
-                    helpDescription2.setText(selectedCoffee.address);
+                    helpDescription2.setText(selectedCoffee.getAddress());
                     TextView helpDescription3 = helpDialog.findViewById(R.id.helpDescription3);
-                    helpDescription3.setText(selectedCoffee.telephone);
+                    helpDescription3.setText(selectedCoffee.getTelephone());
                     TextView helpDescription4 = helpDialog.findViewById(R.id.helpDescription4);
-                    helpDescription4.setText(selectedCoffee.website);
+                    helpDescription4.setText(selectedCoffee.getWebsite());
                     ImageView imageView = helpDialog.findViewById(R.id.imageView);
                     imageView.setVisibility(View.GONE);
                     ImageView coffeeImageView = helpDialog.findViewById(R.id.coffeeImageView);
@@ -196,9 +198,9 @@ public class DetailsFragment extends Fragment {
                 convertView = getLayoutInflater().inflate(R.layout.activity_2_listview_row_layout, parent, false);
             }
             TextView placeName =convertView.findViewById(R.id.placeName);
-            placeName.setText(aPlace.name);
+            placeName.setText(aPlace.getName());
             TextView placeAddress =convertView.findViewById(R.id.placeAddress);
-            placeAddress.setText(aPlace.address);
+            placeAddress.setText(aPlace.getAddress());
             return convertView;
         }
     }

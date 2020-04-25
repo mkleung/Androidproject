@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Activity1"
+    tools:context="com.example.project.Activity1"
     android:orientation="vertical"
     android:background="@color/colorBackground" >
 
@@ -38,13 +38,13 @@
                 app:srcCompat="@drawable/search_activity"
                 android:layout_marginTop="20dp"
                 android:layout_weight="2"
-                android:contentDescription="imageview" />
+                android:contentDescription="@string/view_map" />
 
             <EditText
                 android:id="@+id/latitudeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="latitude"
+                android:hint="@string/latitude"
                 android:text=""
                 tools:layout_editor_absoluteX="123dp"
                 tools:layout_editor_absoluteY="150dp"
@@ -52,13 +52,13 @@
                 android:textColor="@color/colorText"
                 android:backgroundTint="@color/colorPrimary"
                 android:inputType="numberDecimal|numberSigned"
-                />
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/longitudeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="longitude"
+                android:hint="@string/longitude"
                 android:text=""
                 tools:layout_editor_absoluteX="127dp"
                 tools:layout_editor_absoluteY="336dp"
@@ -66,7 +66,7 @@
                 android:textColor="@color/colorText"
                 android:backgroundTint="@color/colorPrimary"
                 android:inputType="numberDecimal|numberSigned"
-                />
+                android:autofillHints="" />
 
 
             <Button
@@ -74,8 +74,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:drawableLeft="@drawable/search"
-                android:text="Search Location"
+                android:drawableStart="@drawable/search"
+                android:text="@string/search_location"
                 android:textSize="14sp"
                 android:textColor="#FFF"
                 android:background="@color/colorPrimary"
@@ -91,18 +91,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:drawableLeft="@drawable/gps_search"
-                    android:text="Generate Random Location"
+                    android:drawableStart="@drawable/gps_search"
+                    android:text="@string/randLocText"
                     android:textSize="14sp"
                     android:textColor="#FFF"
                     android:background="@color/colorPrimary"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
                     tools:ignore="ButtonStyle" />
 
                 <Button
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:id="@+id/btnGetLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

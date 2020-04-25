@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context=".MainActivity"
+    tools:context="com.example.project.MainActivity"
 
     android:gravity="center"
     android:background="@drawable/earth_tablet">

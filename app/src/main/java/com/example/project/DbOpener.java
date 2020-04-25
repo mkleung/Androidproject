@@ -1,4 +1,4 @@
-package com.example.nasaearthimagerydatabase;
+package com.example.project;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

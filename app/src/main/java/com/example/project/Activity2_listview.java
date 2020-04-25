@@ -1,4 +1,4 @@
-package com.example.nasaearthimagerydatabase;
+package com.example.project;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project.R;
 import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
@@ -106,16 +107,16 @@ public class Activity2_listview extends AppCompatActivity implements NavigationV
             helpDialog.setContentView(R.layout.activity_2_help_dialog);
 
             TextView helpDescription =  helpDialog.findViewById(R.id.helpDescription);
-            helpDescription.setText(selectedCoffee.name);
+            helpDescription.setText(selectedCoffee.getName());
 
             TextView helpDescription2 =  helpDialog.findViewById(R.id.helpDescription2);
-            helpDescription2.setText(selectedCoffee.address);
+            helpDescription2.setText(selectedCoffee.getAddress());
 
             TextView helpDescription3 =  helpDialog.findViewById(R.id.helpDescription3);
-            helpDescription3.setText(selectedCoffee.telephone);
+            helpDescription3.setText(selectedCoffee.getTelephone());
 
             TextView helpDescription4 = helpDialog.findViewById(R.id.helpDescription4);
-            helpDescription4.setText(selectedCoffee.website);
+            helpDescription4.setText(selectedCoffee.getWebsite());
 
             ImageView imageView = helpDialog.findViewById(R.id.imageView);
             imageView.setVisibility(View.GONE);
@@ -280,9 +281,9 @@ public class Activity2_listview extends AppCompatActivity implements NavigationV
                 convertView = getLayoutInflater().inflate(R.layout.activity_2_listview_row_layout, parent, false);
             }
             TextView placeName = convertView.findViewById(R.id.placeName);
-            placeName.setText(aPlace.name);
+            placeName.setText(aPlace.getName());
             TextView placeAddress =  convertView.findViewById(R.id.placeAddress);
-            placeAddress.setText(aPlace.address);
+            placeAddress.setText(aPlace.getAddress());
             return convertView;
         }
     }

@@ -1,4 +1,4 @@
-package com.example.nasaearthimagerydatabase;
+package com.example.project;
 
 /**
  * <h1>Coffee Place</h1>
@@ -9,10 +9,10 @@ package com.example.nasaearthimagerydatabase;
  * @version 1.0
  */
 public class CoffeePlace {
-    protected  String name;
-    protected  String address;
-    protected  String telephone;
-    protected  String website;
+    private  String name;
+    private  String address;
+    private  String telephone;
+    private  String website;
 
     public CoffeePlace(String name, String address, String telephone, String website) {
         this.name = name;

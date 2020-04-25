@@ -1,4 +1,4 @@
-package com.example.nasaearthimagerydatabase;
+package com.example.project;
 
 public class Place {
 

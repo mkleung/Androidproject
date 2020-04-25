@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.nasaearthimagerydatabase"
+    package="com.example.project"
     tools:ignore="MissingLeanbackLauncher">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -29,12 +29,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".Activity3" />
+        <activity android:name="com.example.project.Activity3" />
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/map_key" />
-        <activity android:name=".Activity2_listview" />
-        <activity android:name=".Activity1" />
-        <activity android:name=".Activity2" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.project.Activity2_listview" />
+        <activity android:name="com.example.project.Activity1" />
+        <activity android:name="com.example.project.Activity2" />
+        <activity android:name="com.example.project.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -42,7 +42,7 @@
         </activity>
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.nasaearthimagerydatabase.fileprovider"
+            android:authorities="com.example.project.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />

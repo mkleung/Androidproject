@@ -1,4 +1,4 @@
-package com.example.nasaearthimagerydatabase;
+package com.example.project;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +33,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project.R;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -139,40 +140,6 @@ public class Activity3 extends AppCompatActivity  implements NavigationView.OnNa
         inflater.inflate(R.menu.top_menu, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) searchItem.getActionView();
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                    ArrayList<Place> tempList = new ArrayList<>();
-                    for (int i = 0; i < placesList.size(); i++){
-                        Place aPlace = placesList.get(i);
-                        if (aPlace.getTitle().equals(query)) {
-                            tempList.add(aPlace);
-                        }
-                    }
-                    placesList = tempList;
-                    myAdapter.notifyDataSetChanged();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                return false;
-            }
-        });
-
-//        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-//            @Override
-//            public boolean onClose() {
-//                Toast.makeText(getApplicationContext(), "close ", Toast.LENGTH_LONG).show();
-//                placesList = initialList;
-//                myAdapter.notifyDataSetChanged();
-//                return false;
-//            }
-//        });
-
 
 
         return true;
