@@ -101,7 +101,7 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
         rightButton = findViewById(R.id.rightButton);
         upButton = findViewById(R.id.upButton);
         downButton = findViewById(R.id.downButton);
-
+        currentPhotoPath = "";
 
         // Load data from previous activity
         latitude = getIntent().getStringExtra("LATITUDE");
@@ -131,9 +131,7 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
             EditText titleEditText = favoriteDialog.findViewById(R.id.titleEditText);
             RatingBar simpleRatingBar = favoriteDialog.findViewById(R.id.simpleRatingBar);
             EditText descriptionEditText = favoriteDialog.findViewById(R.id.descriptionEditText);
-
             Objects.requireNonNull(favoriteDialog.getWindow()).setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
             Button okButton = favoriteDialog.findViewById(R.id.okButton);
 
             okButton.setOnClickListener(click -> {
@@ -147,6 +145,7 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
                     testIntent3.putExtra("DESCRIPTION", descriptionEditText.getText().toString());
                     testIntent3.putExtra("STARS", String.valueOf(simpleRatingBar.getRating()));
                     testIntent3.putExtra("ZOOM", String.valueOf(zoom));
+                    testIntent3.putExtra("PHOTO", currentPhotoPath);
                     startActivity(testIntent3);
                     closeKeyboard();
                     favoriteDialog.cancel();
@@ -251,6 +250,9 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
 
     } // Oncreate
 
+    /**
+     * Camera
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbOpener extends SQLiteOpenHelper {
 
-    protected final static String DATABASE_NAME = "TestDB";
+    protected final static String DATABASE_NAME = "Locations";
     protected final static int VERSION_NUM = 1;
     public final static String TABLE_NAME = "LOCATIONS";
     public final static String COL_TITLE = "TITLE";
@@ -17,6 +17,7 @@ public class DbOpener extends SQLiteOpenHelper {
     public final static String COL_EMAIL = "EMAIL";
     public final static String COL_STARS = "STARS";
     public final static String COL_ZOOM = "ZOOM";
+    public final static String COL_PHOTO = "PHOTO";
     public final static String COL_ID = "_id";
 
     public DbOpener(Context ctx)
@@ -36,6 +37,7 @@ public class DbOpener extends SQLiteOpenHelper {
                 + COL_EMAIL + " text,"
                 + COL_STARS + " text,"
                 + COL_ZOOM + " text,"
+                + COL_PHOTO
                 + " text);");  // add or remove columns
     }
 

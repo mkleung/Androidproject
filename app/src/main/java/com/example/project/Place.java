@@ -9,10 +9,11 @@ public class Place {
     private String email;
     private String stars;
     private String zoom;
+    private String currentPhotoPath;
     private long id;
 
     /**Constructor:*/
-    public Place(String atitle, String alatitude, String alongitude, String adescription, String aemail, String astars, String azoom, long i)
+    public Place(String atitle, String alatitude, String alongitude, String adescription, String aemail, String astars, String azoom, String aCurrentPhotoPath, long i)
     {
         title = atitle;
         latitude = alatitude;
@@ -21,6 +22,7 @@ public class Place {
         email = aemail;
         stars = astars;
         zoom = azoom;
+        currentPhotoPath = aCurrentPhotoPath;
         id = i;
     }
 
@@ -45,6 +47,7 @@ public class Place {
     public String getZoom() {
         return zoom;
     }
+    public String getCurrentPhotoPath() { return currentPhotoPath; }
     public long getId() {
         return id;
     }

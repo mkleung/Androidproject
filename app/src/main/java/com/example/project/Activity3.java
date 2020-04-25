@@ -7,8 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.widget.SearchView;
-
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,6 +14,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -28,6 +29,7 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -52,6 +54,8 @@ public class Activity3 extends AppCompatActivity  implements NavigationView.OnNa
 
     SharedPreferences sharedPreferences = null;
     public static final String DEFAULT="N/A";
+
+    String currentPhotoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,9 +94,9 @@ public class Activity3 extends AppCompatActivity  implements NavigationView.OnNa
         String latitude = getIntent().getStringExtra("LATITUDE");
         String longitude = getIntent().getStringExtra("LONGITUDE");
         String description = getIntent().getStringExtra("DESCRIPTION");
-
         String stars = getIntent().getStringExtra("STARS");
         String zoom = getIntent().getStringExtra("ZOOM");
+        currentPhotoPath = getIntent().getStringExtra("PHOTO");
 
             if (TextUtils.isEmpty(title)) {
                 return;
@@ -112,6 +116,9 @@ public class Activity3 extends AppCompatActivity  implements NavigationView.OnNa
             if (TextUtils.isEmpty(zoom)) {
                 return;
             }
+            if (TextUtils.isEmpty(currentPhotoPath)) {
+                return;
+            }
 
             ContentValues newRowValues = new ContentValues();
             newRowValues.put(DbOpener.COL_TITLE, title);
@@ -121,13 +128,12 @@ public class Activity3 extends AppCompatActivity  implements NavigationView.OnNa
             newRowValues.put(DbOpener.COL_EMAIL, loginEmail);
             newRowValues.put(DbOpener.COL_STARS, stars);
             newRowValues.put(DbOpener.COL_ZOOM, zoom);
+            newRowValues.put(DbOpener.COL_PHOTO, currentPhotoPath);
 
             long newId = db.insert(DbOpener.TABLE_NAME, null, newRowValues);
-            Place newPlace = new Place(title, latitude, longitude,description,loginEmail,stars,zoom, newId);
+            Place newPlace = new Place(title, latitude, longitude,description,loginEmail,stars,zoom, currentPhotoPath, newId);
             placesList.add(newPlace);
             myAdapter.notifyDataSetChanged();
-
-
 
     } //End onCreate
 
@@ -138,10 +144,6 @@ public class Activity3 extends AppCompatActivity  implements NavigationView.OnNa
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.top_menu, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-
-
         return true;
     }
 
@@ -218,7 +220,7 @@ public class Activity3 extends AppCompatActivity  implements NavigationView.OnNa
         public View getView(int position, View old, ViewGroup parent) {
             Place thisRow = getItem(position);
             if (old == null){
-                old = getLayoutInflater().inflate(R.layout.activity_test3_row_layout, parent, false );
+                old = getLayoutInflater().inflate(R.layout.activity_3_row_layout, parent, false );
             }
             TextView rowTitle = old.findViewById(R.id.placeTitle);
             rowTitle.setText(thisRow.getTitle());
@@ -226,6 +228,12 @@ public class Activity3 extends AppCompatActivity  implements NavigationView.OnNa
             RatingBar mRatingBar = old.findViewById(R.id.ratingBar);
             String s = thisRow.getStars();
             mRatingBar.setRating(Character.getNumericValue(s.charAt(0)));
+
+            ImageView viewPhoto = old.findViewById(R.id.viewPhoto);
+            Bitmap thumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(thisRow.getCurrentPhotoPath()), 150, 150);
+            viewPhoto.setImageBitmap(thumbImage);
+
+
 
             TextView data = old.findViewById(R.id.data);
             String dataString = thisRow.getLatitude() + ", " + thisRow.getLongitude();
@@ -290,7 +298,7 @@ public class Activity3 extends AppCompatActivity  implements NavigationView.OnNa
         DbOpener dbOpener = new DbOpener(this);
         db = dbOpener.getWritableDatabase();
 
-        String [] columns = {DbOpener.COL_ID, DbOpener.COL_TITLE, DbOpener.COL_LATITUDE, DbOpener.COL_LONGITUDE, DbOpener.COL_DESCRIPTION, DbOpener.COL_EMAIL, DbOpener.COL_STARS, DbOpener.COL_ZOOM};
+        String [] columns = {DbOpener.COL_ID, DbOpener.COL_TITLE, DbOpener.COL_LATITUDE, DbOpener.COL_LONGITUDE, DbOpener.COL_DESCRIPTION, DbOpener.COL_EMAIL, DbOpener.COL_STARS, DbOpener.COL_ZOOM, DbOpener.COL_PHOTO};
         Cursor results = db.query(false, DbOpener.TABLE_NAME, columns, null, null, null, null, null, null);
 
         int titleColumnIndex = results.getColumnIndex(DbOpener.COL_TITLE);
@@ -300,6 +308,7 @@ public class Activity3 extends AppCompatActivity  implements NavigationView.OnNa
         int emailColumnIndex = results.getColumnIndex(DbOpener.COL_EMAIL);
         int starsColumnIndex = results.getColumnIndex(DbOpener.COL_STARS);
         int zoomColumnIndex = results.getColumnIndex(DbOpener.COL_ZOOM);
+        int photoColumnIndex = results.getColumnIndex(DbOpener.COL_PHOTO);
         int idColIndex = results.getColumnIndex(DbOpener.COL_ID);
 
         while(results.moveToNext()) {
@@ -311,10 +320,11 @@ public class Activity3 extends AppCompatActivity  implements NavigationView.OnNa
             String email = results.getString(emailColumnIndex);
             String stars = results.getString(starsColumnIndex);
             String zoom = results.getString(zoomColumnIndex);
+            String photo = results.getString(photoColumnIndex);
             long id = results.getLong(idColIndex);
 
             if (email.equals(loginEmail)) {
-                placesList.add(new Place(title, latitude, longitude, description, email, stars, zoom, id));
+                placesList.add(new Place(title, latitude, longitude, description, email, stars, zoom, photo, id));
             }
 
         }
