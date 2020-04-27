@@ -25,7 +25,7 @@
         tools:openDrawer="start">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -33,28 +33,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
-            <ImageView
-                android:id="@+id/mapView"
+
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="15"
-                android:paddingBottom="10dp"
-                tools:ignore="ContentDescription" />
+                android:layout_weight="1"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:id="@+id/mapView"
+                    android:layout_height="350dp"
+                    android:layout_width="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true" />
+
+                <ImageView
+                    android:id="@+id/photoView"
+                    android:layout_height="200dp"
+                    android:layout_width="200dp"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:background="#FFF"
+                    android:padding="5dp"
+                 />
+
+                <ImageButton
+                    android:id="@+id/closeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/close"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginRight="120dp"
+                    android:background="@null"/>
 
 
-            <ImageView
-                android:id="@+id/photoView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="15"
-                android:paddingBottom="10dp"
-                tools:ignore="ContentDescription" />
+            </RelativeLayout>
 
             <!-- Latitude, longitude and arrows -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:orientation="horizontal"
+                android:layout_weight="1"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 tools:ignore="DisableBaselineAlignment">
@@ -175,6 +199,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_weight="1"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp">
@@ -199,6 +224,7 @@
                 app:itemIconTint="@color/bottom_nav_color"
                 app:itemTextColor="@color/bottom_nav_color"
                 android:background="@color/colorBackground"
+                app:elevation="0dp"
                 app:menu="@menu/bottom_menu" />
 
         </LinearLayout>

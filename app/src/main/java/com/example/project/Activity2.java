@@ -77,6 +77,7 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
     ImageButton rightButton;
     ImageButton upButton;
     ImageButton downButton;
+    ImageButton closeButton;
     Button favoriteButton;
     ApiUrl currentUrl;
     Boolean isTablet;
@@ -102,6 +103,9 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
         upButton = findViewById(R.id.upButton);
         downButton = findViewById(R.id.downButton);
         currentPhotoPath = "";
+        photoView.setVisibility(View.GONE);
+        closeButton = findViewById(R.id.closeButton);
+        closeButton.setVisibility(View.GONE);
 
         // Load data from previous activity
         latitude = getIntent().getStringExtra("LATITUDE");
@@ -248,6 +252,12 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
             return true;
         });
 
+
+        closeButton.setOnClickListener(view -> {
+            photoView.setVisibility(View.GONE);
+            currentPhotoPath = "";
+        });
+
     } // Oncreate
 
     /**
@@ -259,6 +269,8 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
 
         if (requestCode == 1 && resultCode == RESULT_OK){
             Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
+            photoView.setVisibility(View.VISIBLE);
+            closeButton.setVisibility(View.VISIBLE);
             photoView.setImageBitmap(bitmap);
         }
     }
@@ -454,6 +466,11 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
         private String end;
 
         ApiUrl(String latitude, String longitude, String zoom) {
+
+            // sources
+            // https://docs.microsoft.com/en-us/bingmaps/rest-services/imagery/get-a-static-map
+            // https://dev.virtualearth.net/REST/V1/Imagery/Metadata/Aerial/45.4215,-75.6972?zl=18&o=xml&ms=500,500&key=At7y4aOtMy4Uopf8cD8cu_um0-YGyp5nlzPLLDBxLmgDN4o6DUkvk0ZTs4QpYh1O
+
             this.start = "https://dev.virtualearth.net/REST/V1/Imagery/Metadata/Aerial/";
             this.latitude = latitude;
             this.longitude = longitude;
