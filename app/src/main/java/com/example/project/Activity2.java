@@ -437,9 +437,7 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
      * are pressed. This calls the api again with new parameters
      */
     public void zoom() {
-        MapQuery req = new MapQuery();
-        currentUrl.changeZoom(Integer.toString(zoom));
-        req.execute(currentUrl.returnUrl());
+        
 
     }
 
@@ -462,24 +460,22 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
         private String start;
         private String latitude;
         private String longitude;
-        private String zoom;
-        private String end;
+        private String requestDate;
+        private String apiKey;
 
-        ApiUrl(String latitude, String longitude, String zoom) {
+        ApiUrl(String latitude, String longitude, String requestDate) {
 
             // sources
             // https://docs.microsoft.com/en-us/bingmaps/rest-services/imagery/get-a-static-map
             // https://dev.virtualearth.net/REST/V1/Imagery/Metadata/Aerial/45.4215,-75.6972?zl=18&o=xml&ms=500,500&key=At7y4aOtMy4Uopf8cD8cu_um0-YGyp5nlzPLLDBxLmgDN4o6DUkvk0ZTs4QpYh1O
 
-            this.start = "https://dev.virtualearth.net/REST/V1/Imagery/Metadata/Aerial/";
-            this.latitude = latitude;
-            this.longitude = longitude;
-            this.zoom = zoom;
-            this.end = "&o=xml&ms=500,500&key=At7y4aOtMy4Uopf8cD8cu_um0-YGyp5nlzPLLDBxLmgDN4o6DUkvk0ZTs4QpYh1O";
-        }
+            //https://api.nasa.gov/planetary/earth/imagery?lon=-104.9903&lat=39.7392&date=2016-01-01&dim=0.1&api_key=DEMO_KEY
 
-        void changeZoom(String zoom) {
-            this.zoom = zoom;
+            this.start = "https://api.nasa.gov/planetary/earth/imagery?";
+            this.latitude = "&lat=" + latitude;
+            this.longitude = "?lon=" + longitude;
+            this.requestDate = "&date=" + requestDate;
+            this.apiKey = "&api_key=9EyLmpzTUYwIwWLlQytENHGPSturkkhCx4KjzCEY";
         }
 
         void moveRight() {
@@ -503,7 +499,7 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
         }
 
         String returnUrl() {
-            return start + latitude + "," + longitude + "?zl=" + zoom + end;
+            return start + latitude + longitude + requestDate + apiKey;
         }
     }
 
